@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.staticfile.org/codemirror/5.40.2/codemirror.min.css"
+    />
+    <!--[if lt IE 9]>
+      <script src="//cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="app">
+      <v-app id="inspire">
+        <v-container fluid>
+          <v-row>
+            <v-col cols="12" md="1" class="blue white--text">
+              <v-btn dark outlined onclick="submitTryit()">RENDER</v-btn>
+            </v-col>
+            <v-spacer></v-spacer>
+            <v-col cols="12" md="11" class="blue white--text">
+              <v-menu bottom left>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn-toggle tile group class="blue white--text">
+                    <v-btn
+                      class="blue white--text"
+                      outlined
+                      v-for="(item, i) in items"
+                      :key="i"
+                    >
+                      <span v-on:click="replaceWithNewSource(item.link)"
+                        >{{item.t}}</span
+                      >
+                    </v-btn>
+                  </v-btn-toggle>
+                  <!-- <v-btn dark v-bind="attrs" v-on="on" block outlined>
+                    More 
+                  </v-btn> -->
+                </template>
+
+                <!-- <v-list>
+                  <v-list-item v-for="(item, i) in items" :key="i">
+                    <v-list-item-content v-on:click="replaceWithNewSource(item.link)" v-text="`${item.t}` "></v-list-item-content>
+                  </v-list-item>
+                </v-list> -->
+              </v-menu>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col cols="12" md="6">
+              <v-card>
+                <textarea
+                  name="sourceCode"
+                  id="sourceCode"
+                  label="Source Code"
+                  :value="sourceCode"
+                ></textarea>
+              </v-card>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-card id="renderedCode"> </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-app>
+    </div>
+
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/codemirror.min.js"></script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/mode/css/css.min.js"></script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/mode/javascript/javascript.min.js"></script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/mode/xml/xml.min.js"></script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/addon/edit/closetag.min.js"></script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+
+        data() {
+          return {
+            items: [
+              {
+                t: "H",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+</head>
+<body>
+
+<h1>标题 1</h1>
+<h2>标题 2</h2>
+<h3>标题 3</h3>
+<h4>标题 4</h4>
+<h5>标题 5</h5>
+<h6>标题 6</h6>
+
+</body>
+</html>
+           
+            `,
+              },
+              {
+                t: "P",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>段落</title>
+</head>
+<body>
+
+<p>段落</p>
+<p>段落</p>
+<p>段落</p>
+
+</body>
+</html>          
+            `,
+              },
+              {
+                t: "a",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>a</title>
+</head>
+<body>
+
+    <a href="https://www.baidu.com" target="_blank" >href属性表示目标网页的地址</a>
+</body>
+</html>          
+            `,
+              },
+              {
+                t: "img",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>img</title>
+</head>
+<body>
+
+    <img src="https://www.baidu.com/img/flexible/logo/pc/result.png" width="101" height="33" />
+</body>
+</html>          
+            `,
+              },
+              {
+                t: "format",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>format</title>
+</head>
+<body>
+<b>加粗文本</b><br><br>
+<i>斜体文本</i><br><br>
+<code>电脑自动输出</code><br><br>
+这是 <sub> 下标</sub> 和 <sup> 上标</sup>
+</body>
+</html>          
+            `,
+              },
+              {
+                t: "table",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>table</title>
+</head>
+<table border="1">
+  <caption>Test</caption>
+  <tr>
+    <th>Index</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>111</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>222</td>
+  </tr>
+</table>
+</body>
+</html>          
+            `,
+              },
+              {
+                t: "ol",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>imolg</title>
+</head>
+
+<ol>
+  <li>Apple</li>
+  <li>Banana</li>
+  <li>Orange</li>
+</ol>
+
+<ol start="10">
+  <li>Apple</li>
+  <li>Banana</li>
+  <li>Orange</li>
+</ol>
+</body>
+</html>          
+            `,
+              },
+              {
+                t: "radio",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>radio</title>
+</head>
+<form action="">
+<input type="radio" name="sex" value="male">Male<br>
+<input type="radio" name="sex" value="female">Female
+</form>
+</body>
+</html>          
+            `,
+              },
+              {
+                t: "checkbox",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>checkbox</title>
+</head>
+<form action="">
+<input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+<input type="checkbox" name="vehicle" value="Car">I have a car 
+</form>
+</body>
+</html>          
+            `,
+              },
+              {
+                t: "select",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>select</title>
+</head>
+<form action="">
+<select name="cars">
+<option value="volvo">Volvo</option>
+<option value="saab">Saab</option>
+<option value="fiat">Fiat</option>
+<option value="audi">Audi</option>
+</select>
+</form>
+</body>
+</html>          
+            `,
+              },
+              {
+                t: "textarea",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>textarea</title>
+</head>
+<textarea rows="10" cols="30">
+文本框
+</textarea>
+
+</body>
+</html>          
+            `,
+              },
+              {
+                t: "submit",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>submit</title>
+</head>
+<form action="s" method="get">
+  <input type="checkbox" name="wd" value="Apple"> I have a Apple<br>
+  <input type="checkbox" name="wd" value="Banana" checked="checked"> I have a Banana<br>
+  <input type="submit" value="提交">
+  <input type="reset" value="重置">
+</form>
+<form action="s" method="get">
+  <input type="radio" name="wd" value="Apple"> Male<br>
+  <input type="radio" name="wd" value="Banana" checked="checked"> Female<br>
+  <input type="submit" value="提交">
+  <input type="reset" value="重置">
+</form>
+
+</body>
+</html>          
+            `,
+              },
+              {
+                t: "iframe",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>iframe</title>
+</head>
+<iframe src="https://www.baidu.com" style="height: 455.6px;width:925px;" frameborder="0"></iframe>
+
+</body>
+</html>          
+            `,
+              },
+              {
+                t: "color",
+                link: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>color</title>
+</head>
+<p style="background-color:#FFFF00">
+通过十六进制设置背景颜色
+</p>
+
+<p style="background-color:rgb(255,255,0)">
+通过 rbg 值设置背景颜色
+</p>
+
+<p style="background-color:yellow">
+通过颜色名设置背景颜色
+</p>
+</body>
+</html>          
+            `,
+              },
+            ],
+            sourceCode: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HTML</title>
+</head>
+<body>
+
+<h1>标题</h1>
+<p>段落</p>
+
+</body>
+</html>
+            `,
+          };
+        },
+        methods: {
+          add: function (num) {
+            if (this.radios === "apple") {
+              this.appleCount++;
+            } else {
+              this.bananaCount++;
+            }
+          },
+          replaceWithNewSource: function (code) {
+            editor.getDoc().setValue(code);
+            submitTryit();
+          },
+        },
+      });
+    </script>
+    <script>
+      var mixedMode = {
+        name: "htmlmixed",
+        scriptTypes: [
+          { matches: /\/x-handlebars-template|\/x-mustache/i, mode: null },
+          {
+            matches: /(text|application)\/(x-)?vb(a|script)/i,
+            mode: "vbscript",
+          },
+        ],
+      };
+      var editor = CodeMirror.fromTextArea(
+        document.getElementById("sourceCode"),
+        {
+          mode: mixedMode,
+          selectionPointer: true,
+          lineNumbers: true,
+          matchBrackets: true,
+          indentUnit: 4,
+          indentWithTabs: true,
+        }
+      );
+
+      window.addEventListener("resize", autodivheight);
+
+      var x = 0;
+      function autodivheight() {
+        var winHeight = 0;
+        if (window.innerHeight) {
+          winHeight = window.innerHeight;
+        } else if (document.body && document.body.clientHeight) {
+          winHeight = document.body.clientHeight;
+        }
+        if (document.documentElement && document.documentElement.clientHeight) {
+          winHeight = document.documentElement.clientHeight;
+        }
+        height = winHeight * 0.68;
+        editor.setSize("100%", height);
+        document.getElementById("renderedResult").style.height = height + "px";
+      }
+      function resetCode() {
+        var initCode =
+          '<!DOCTYPE html>\n<html>\n<head>\n<meta charset="utf-8">\n<title>\u83dc\u9e1f\u6559\u7a0b(runoob.com)<\/title>\n<\/head>\n<body>\n\n<h1>\u6211\u7684\u7b2c\u4e00\u4e2a\u6807\u9898<\/h1>\n<p>\u6211\u7684\u7b2c\u4e00\u4e2a\u6bb5\u843d\u3002<\/p>\n\n<\/body>\n<\/html>';
+        editor.getDoc().setValue(initCode);
+        submitTryit();
+      }
+      function submitTryit() {
+        var text = editor.getValue();
+        var patternHtml = /<html[^>]*>((.|[\n\r])*)<\/html>/im;
+        var patternHead = /<head[^>]*>((.|[\n\r])*)<\/head>/im;
+        var array_matches_head = patternHead.exec(text);
+        var patternBody = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
+
+        var array_matches_body = patternBody.exec(text);
+        var basepath_flag = 1;
+        var basepath = "";
+        if (basepath_flag) {
+          basepath = '<base href="//www.baidu.com/" target="_blank">';
+        }
+        if (array_matches_head) {
+          text = text.replace("<head>", "<head>" + basepath);
+        } else if (patternHtml) {
+          text = text.replace("<html>", "<head>" + basepath + "</head>");
+        } else if (array_matches_body) {
+          text = text.replace("<body>", "<body>" + basepath);
+        } else {
+          text = basepath + text;
+        }
+        var ifr = document.createElement("iframe");
+        ifr.setAttribute("frameborder", "0");
+        ifr.setAttribute("id", "renderedResult");
+        document.getElementById("renderedCode").innerHTML = "";
+        document.getElementById("renderedCode").appendChild(ifr);
+
+        var ifrw = ifr.contentWindow
+          ? ifr.contentWindow
+          : ifr.contentDocument.document
+          ? ifr.contentDocument.document
+          : ifr.contentDocument;
+        ifrw.document.open();
+        ifrw.document.write(text);
+        ifrw.document.close();
+        autodivheight();
+      }
+      submitTryit();
+      autodivheight();
+    </script>
+  </body>
+</html>
