@@ -81,7 +81,7 @@
               </v-card>
             </v-col>
             <v-col cols="12" md="6">
-              <v-card id="renderedCode"> </v-card>
+              <v-card id="renderedCode" width="100%"> </v-card>
             </v-col>
           </v-row>
         </v-container>
@@ -190,10 +190,10 @@
 <title>format</title>
 </head>
 <body>
-<b>加粗文本</b><br><br>
-<i>斜体文本</i><br><br>
-<code>电脑自动输出</code><br><br>
-这是 <sub> 下标</sub> 和 <sup> 上标</sup>
+<b>粗体</b><br><br>
+<i>斜体</i><br><br>
+<code>这里是代码</code><br><br>
+ <sub> 下标</sub> 和 <sup> 上标</sup>
 </body>
 </html>          
             `,
@@ -333,14 +333,14 @@
 <title>submit</title>
 </head>
 <form action="s" method="get">
-  <input type="checkbox" name="wd" value="Apple"> I have a Apple<br>
-  <input type="checkbox" name="wd" value="Banana" checked="checked"> I have a Banana<br>
+  <input type="checkbox" name="wd" value="Apple">Search Apple<br>
+  <input type="checkbox" name="wd" value="Banana" checked="checked">Search Banana<br>
   <input type="submit" value="提交">
   <input type="reset" value="重置">
 </form>
 <form action="s" method="get">
-  <input type="radio" name="wd" value="Apple"> Male<br>
-  <input type="radio" name="wd" value="Banana" checked="checked"> Female<br>
+  <input type="radio" name="wd" value="Apple">Search Apple<br>
+  <input type="radio" name="wd" value="Banana" checked="checked">Search Banana<br>
   <input type="submit" value="提交">
   <input type="reset" value="重置">
 </form>
@@ -398,8 +398,7 @@
 </head>
 <body>
 
-<h1>标题</h1>
-<p>段落</p>
+<h1>在这里输入您的源码</h1>
 
 </body>
 </html>
@@ -492,6 +491,8 @@
         var ifr = document.createElement("iframe");
         ifr.setAttribute("frameborder", "0");
         ifr.setAttribute("id", "renderedResult");
+        ifr.setAttribute("width","100%")
+        ifr.setAttribute("height","100%")
         document.getElementById("renderedCode").innerHTML = "";
         document.getElementById("renderedCode").appendChild(ifr);
 

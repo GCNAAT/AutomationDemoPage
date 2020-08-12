@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FindElement</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <v-app id="inspire">
+        <v-container fluid>
+          <v-row align="center" justify="center">
+            <div class="text-center">
+              <section>
+                <h1>id</h1>
+                <div id="id-section">I have the id</div>
+              </section>
+              <section>
+                <h1>name</h1>
+                <div name="name-section">I have the name</div>
+                <div name="name-section">I have the name too</div>
+              </section>
+              <section>
+                <h1>class name</h1>
+                <div class="class-section">I have the class name</div>
+                <div class="class-section">I have the class name too</div>
+              </section>
+              <section>
+                <h1>tag name</h1>
+                <tag-name id="tag-name-section">I have the tag name</tag-name>
+              </section>
+              <section>
+                <h1>css selector</h1>
+                <div id="css-selector-section">I have the css selector</div>
+              </section>
+              <section>
+                <h1>xpath</h1>
+                <div id="xpath-section">I have the xpath</div>
+              </section>
+              <section>
+                <h1>link text</h1>
+                <div id="link-text-section">
+                  <a href="#">I have the link text</a>
+                </div>
+              </section>
+              <section>
+                <h1>partial link text</h1>
+                <div id="partial-link-text-section">
+                  <a href="#">I have the partial link text</a>
+                </div>
+              </section>
+            </div>
+          </v-row>
+        </v-container>
+      </v-app>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+        data() {
+          return {
+            radios: "apple",
+            appleCount: 0,
+            bananaCount: 0,
+            dialog: false,
+          };
+        },
+        methods: {
+          add: function (num) {
+            if (this.radios === "apple") {
+              this.appleCount++;
+            } else {
+              this.bananaCount++;
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
