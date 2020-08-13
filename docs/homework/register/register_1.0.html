@@ -61,6 +61,15 @@
                                     </v-text-field>
                                 </v-col>
                             </v-row>
+                            <v-row>
+                                <v-col cols="12">
+                                    <label for="role">Role:</label>
+                                    <select id="role" style="-webkit-appearance: menulist-button;" v-model="tRole">
+                                        <option value="teacher">Teacher</option>
+                                        <option value="student" selected>Student</option>
+                                    </select>
+                                </v-col>
+                            </v-row>
                         </v-container>
                         <v-card-actions>
                             <v-spacer></v-spacer>
@@ -88,22 +97,28 @@
                     password: '',
                     tUsername: '',
                     tPassword: '',
+                    tRole:'student',
                     dialog: false
                 }
             },
             methods: {
                 switchRegisterFlag() {
                     this.displayFlag = !this.displayFlag
+                    this.tRole = 'student'
                 },
                 login() {
                     let u = sessionStorage.getItem("username")
                     let p = sessionStorage.getItem("password")
+                    let r = sessionStorage.getItem("role")
                     if (u === '' || p === '') {
                         alert('Please register firstly')
                     } else
-                        if (this.username !== p || this.password !== u) {
+                        if (this.username !== u || this.password !== p) {
                             alert('Invalid username or password')
-                        } else {
+                        } else if(r !== 'teacher'){
+                            alert('Please register as teacher')
+                        }
+                        else {
                             alert('Login Successfully')
                         }
 
@@ -116,6 +131,7 @@
                     } else {
                         sessionStorage.setItem('username', this.tUsername)
                         sessionStorage.setItem('password', this.tPassword)
+                        sessionStorage.setItem('role', this.tRole)
                         alert('Register Successfully')
                         this.displayFlag = false
                     }
