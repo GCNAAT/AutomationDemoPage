@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mouse_Keyboard</title>
+    <meta charset="utf-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://fonts.googleapis.com/css?family=Material+Icons"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+            rel="stylesheet"
+    />
+    <link
+            rel="stylesheet"
+            href="//cdn.staticfile.org/codemirror/5.40.2/codemirror.min.css"
+    />
+    <!--[if lt IE 9]>
+    <script src="//cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
+     
+</head>
+<body>
+<div id="app">
+    <v-app id="inspire">
+        <v-container fluid>
+            <v-row>
+                <v-col cols="12" md="12" class="blue white--text">
+                    <v-btn dark outlined onclick="submitTryit()">RENDER</v-btn>
+                </v-col>
+                <v-spacer></v-spacer>
+
+            </v-row>
+
+            <v-row>
+                <v-col cols="12" md="6">
+                    <v-card>
+                <textarea
+                        name="sourceCode"
+                        id="sourceCode"
+                        label="Source Code"
+                        :value="sourceCode"
+                ></textarea>
+                    </v-card>
+                </v-col>
+                <v-col cols="12" md="3">
+                  <div id="drop-id" ondrop="console.log('ondrop',event)" ondragover="console.log('ondragover',event);document.querySelector('#drop-id').innerText='drag'" style="width:198px; height:66px;padding:10px;border:1px solid #aaaaaa;"></div>
+                  <br />
+                  <h1 id="drag-id"  draggable="true" ondragstart="console.log('ondragstart',event)" >drag</h1>
+                  <h1>标题 1</h1>
+<h2>标题 2</h2>
+<h3>标题 3</h3>
+<h4>标题 4</h4>
+<h5>标题 5</h5>
+<h6>标题 6</h6>
+<p>段落</p>
+
+<a  id="a" href="https://www.baidu.com" target="_blank" >href属性表示目标网页的地址</a>
+
+<img  id="img" src="https://www.baidu.com/img/flexible/logo/pc/result.png" width="101" height="33" />
+
+<b>粗体</b><br><br>
+<i>斜体</i><br><br>
+<code>这里是代码</code><br><br>
+ <sub> 下标</sub> 和 <sup> 上标</sup>
+ <table border="1" id="table">
+   <caption>Test</caption>
+   <tr>
+     <th>Index</th>
+     <th>Value</th>
+   </tr>
+   <tr>
+     <td>1</td>
+     <td>111</td>
+   </tr>
+   <tr>
+     <td>2</td>
+     <td>222</td>
+   </tr>
+ </table>
+ <ol>
+   <li id="li" >Apple</li>
+   <li>Banana</li>
+   <li>Orange</li>
+ </ol>
+ 
+ <ol  id="ol"  start="10">
+   <li>Apple</li>
+   <li>Banana</li>
+   <li>Orange</li>
+ </ol>
+
+                </v-col>
+                <v-col cols="12" md="3">
+ <form action="">
+  <input   id="radio"  type="radio" name="sex" value="male">Male<br>
+  <input type="radio" name="sex" value="female">Female
+  </form>
+
+
+  <form action="">
+    <input  id="input"  type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+    <input type="checkbox" name="vehicle" value="Car">I have a car 
+    </form>
+
+    <form action="">
+      <select name="cars" id="select" >
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="fiat">Fiat</option>
+      <option value="audi">Audi</option>
+      </select>
+      </form>
+
+      <textarea id="textarea" rows="10" cols="30">
+        文本框
+        </textarea>
+
+
+        <form action="s" method="get">
+          <input type="checkbox" name="wd" value="Apple">Search Apple<br>
+          <input type="checkbox" name="wd" value="Banana" checked="checked">Search Banana<br>
+          <input type="submit" value="提交">
+          <input type="reset" value="重置">
+        </form>
+        <form action="s" method="get">
+          <input type="radio" name="wd" value="Apple">Search Apple<br>
+          <input type="radio" name="wd" value="Banana" checked="checked">Search Banana<br>
+          <input type="submit" value="提交">
+          <input type="reset" value="重置">
+        </form>
+        
+<p style="background-color:#FFFF00">
+  通过十六进制设置背景颜色
+  </p>
+  
+  <p style="background-color:rgb(255,255,0)">
+  通过 rbg 值设置背景颜色
+  </p>
+  
+  <p style="background-color:yellow">
+  通过颜色名设置背景颜色
+  </p>
+        <iframe src="https://www.baidu.com" style="height: 455.6px;width:925px;" frameborder="0"></iframe>
+
+                    <v-card   width="100%"> </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+    </v-app>
+</div>
+
+<script src="//cdn.staticfile.org/codemirror/5.40.2/codemirror.min.js"></script>
+<script src="//cdn.staticfile.org/codemirror/5.40.2/mode/htmlmixed/htmlmixed.min.js"></script>
+<script src="//cdn.staticfile.org/codemirror/5.40.2/mode/css/css.min.js"></script>
+<script src="//cdn.staticfile.org/codemirror/5.40.2/mode/javascript/javascript.min.js"></script>
+<script src="//cdn.staticfile.org/codemirror/5.40.2/mode/xml/xml.min.js"></script>
+<script src="//cdn.staticfile.org/codemirror/5.40.2/addon/edit/closetag.min.js"></script>
+<script src="//cdn.staticfile.org/codemirror/5.40.2/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+ 
+<script>
+      new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+
+        data() {
+          return {
+            sourceCode: `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HTML</title>
+</head>
+<body>
+  <div id="drop-id" ondrop="console.log('ondrop',event)" ondragover="console.log('ondragover',event);document.querySelector('#drop-id').innerText='drag'" style="width:198px; height:66px;padding:10px;border:1px solid #aaaaaa;"></div>
+                  <br />
+                  <h1 id="drag-id"  draggable="true" ondragstart="console.log('ondragstart',event)" >drag</h1>
+                  <h1>标题 1</h1>
+<h2>标题 2</h2>
+<h3>标题 3</h3>
+<h4>标题 4</h4>
+<h5>标题 5</h5>
+<h6>标题 6</h6>
+<p>段落</p>
+
+<a href="https://www.baidu.com" target="_blank" >href属性表示目标网页的地址</a>
+
+<img src="https://www.baidu.com/img/flexible/logo/pc/result.png" width="101" height="33" />
+<b>粗体</b><br><br>
+<i>斜体</i><br><br>
+<code>这里是代码</code><br><br>
+ <sub> 下标</sub> 和 <sup> 上标</sup>
+<table border="1">
+  <caption>Test</caption>
+  <tr>
+    <th>Index</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>111</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>222</td>
+  </tr>
+</table>
+<ol>
+  <li>Apple</li>
+  <li>Banana</li>
+  <li>Orange</li>
+</ol>
+
+<ol start="10">
+  <li>Apple</li>
+  <li>Banana</li>
+  <li>Orange</li>
+</ol>
+<form action="">
+<input type="radio" name="sex" value="male">Male<br>
+<input type="radio" name="sex" value="female">Female
+</form>
+
+<form action="">
+<input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+<input type="checkbox" name="vehicle" value="Car">I have a car 
+</form>
+
+<form action="">
+<select name="cars">
+<option value="volvo">Volvo</option>
+<option value="saab">Saab</option>
+<option value="fiat">Fiat</option>
+<option value="audi">Audi</option>
+</select>
+</form>
+
+<textarea id="textarea" rows="10" cols="30">
+        文本框
+        </textarea>
+
+        <form action="s" method="get">
+  <input type="checkbox" name="wd" value="Apple">Search Apple<br>
+  <input type="checkbox" name="wd" value="Banana" checked="checked">Search Banana<br>
+  <input type="submit" value="提交">
+  <input type="reset" value="重置">
+</form>
+<form action="s" method="get">
+  <input type="radio" name="wd" value="Apple">Search Apple<br>
+  <input type="radio" name="wd" value="Banana" checked="checked">Search Banana<br>
+  <input type="submit" value="提交">
+  <input type="reset" value="重置">
+</form>
+
+
+<p style="background-color:#FFFF00">
+通过十六进制设置背景颜色
+</p>
+
+<p style="background-color:rgb(255,255,0)">
+通过 rbg 值设置背景颜色
+</p>
+
+<p style="background-color:yellow">
+通过颜色名设置背景颜色
+</p>
+
+<iframe src="https://www.baidu.com" style="height: 455.6px;width:925px;" frameborder="0"></iframe>
+
+</body>
+</html>
+            `,
+          };
+        },
+        methods: {
+          add: function (num) {
+            if (this.radios === "apple") {
+              this.appleCount++;
+            } else {
+              this.bananaCount++;
+            }
+          },
+          replaceWithNewSource: function (code) {
+            editor.getDoc().setValue(code);
+            submitTryit();
+          },
+        },
+      });
+    </script>
+<script>
+      var mixedMode = {
+        name: "htmlmixed",
+        scriptTypes: [
+          { matches: /\/x-handlebars-template|\/x-mustache/i, mode: null },
+          {
+            matches: /(text|application)\/(x-)?vb(a|script)/i,
+            mode: "vbscript",
+          },
+        ],
+      };
+      var editor = CodeMirror.fromTextArea(
+        document.getElementById("sourceCode"),
+        {
+          mode: mixedMode,
+          selectionPointer: true,
+          lineNumbers: true,
+          matchBrackets: true,
+          indentUnit: 4,
+          indentWithTabs: true,
+        }
+      );
+
+      window.addEventListener("resize", autodivheight);
+
+      var x = 0;
+      function autodivheight() {
+        var winHeight = 0;
+        if (window.innerHeight) {
+          winHeight = window.innerHeight;
+        } else if (document.body && document.body.clientHeight) {
+          winHeight = document.body.clientHeight;
+        }
+        if (document.documentElement && document.documentElement.clientHeight) {
+          winHeight = document.documentElement.clientHeight;
+        }
+        height = winHeight * 0.875;
+        editor.setSize("100%", height);
+        document.getElementById("renderedResult").style.height = height + "px";
+      }
+      function resetCode() {
+        var initCode =
+          '<!DOCTYPE html>\n<html>\n<head>\n<meta charset="utf-8">\n<title>\u83dc\u9e1f\u6559\u7a0b(runoob.com)<\/title>\n<\/head>\n<body>\n\n<h1>\u6211\u7684\u7b2c\u4e00\u4e2a\u6807\u9898<\/h1>\n<p>\u6211\u7684\u7b2c\u4e00\u4e2a\u6bb5\u843d\u3002<\/p>\n\n<\/body>\n<\/html>';
+        editor.getDoc().setValue(initCode);
+        submitTryit();
+      }
+      function submitTryit() {
+        var text = editor.getValue();
+        var patternHtml = /<html[^>]*>((.|[\n\r])*)<\/html>/im;
+        var patternHead = /<head[^>]*>((.|[\n\r])*)<\/head>/im;
+        var array_matches_head = patternHead.exec(text);
+        var patternBody = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
+
+        var array_matches_body = patternBody.exec(text);
+        var basepath_flag = 1;
+        var basepath = "";
+        if (basepath_flag) {
+          basepath = '<base href="//www.baidu.com/" target="_blank">';
+        }
+        if (array_matches_head) {
+          text = text.replace("<head>", "<head>" + basepath);
+        } else if (patternHtml) {
+          text = text.replace("<html>", "<head>" + basepath + "</head>");
+        } else if (array_matches_body) {
+          text = text.replace("<body>", "<body>" + basepath);
+        } else {
+          text = basepath + text;
+        }
+        var ifr = document.createElement("iframe");
+        ifr.setAttribute("frameborder", "0");
+        ifr.setAttribute("id", "renderedResult");
+        ifr.setAttribute("width","100%")
+        ifr.setAttribute("height","100%")
+        document.getElementById("renderedCode").innerHTML = "";
+        document.getElementById("renderedCode").appendChild(ifr);
+
+        var ifrw = ifr.contentWindow
+          ? ifr.contentWindow
+          : ifr.contentDocument.document
+          ? ifr.contentDocument.document
+          : ifr.contentDocument;
+        ifrw.document.open();
+        ifrw.document.write(text);
+        ifrw.document.close();
+        autodivheight();
+      }
+      submitTryit();
+      autodivheight();
+    </script>
+</body> 
+</html>
