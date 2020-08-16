@@ -1,179 +1,224 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Mouse_Keyboard</title>
     <meta charset="utf-8" />
     <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <link
-            href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
     />
     <link
-            href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
-            rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
     />
     <link
-            href="https://fonts.googleapis.com/css?family=Material+Icons"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Material+Icons"
+      rel="stylesheet"
     />
     <link
-            href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
-            rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
     />
     <link
-            rel="stylesheet"
-            href="//cdn.staticfile.org/codemirror/5.40.2/codemirror.min.css"
+      rel="stylesheet"
+      href="//cdn.staticfile.org/codemirror/5.40.2/codemirror.min.css"
     />
     <!--[if lt IE 9]>
-    <script src="//cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="//cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <![endif]-->
-     
-</head>
-<body>
-<div id="app">
-    <v-app id="inspire">
+  </head>
+  <body>
+    <div id="app">
+      <v-app id="inspire">
         <v-container fluid>
-            <v-row>
-                <v-col cols="12" md="12" class="blue white--text">
-                    <v-btn dark outlined onclick="submitTryit()">RENDER</v-btn>
-                </v-col>
-                <v-spacer></v-spacer>
+          <v-row>
+            <v-col cols="12" md="12" class="blue white--text">
+              <v-btn dark outlined onclick="submitTryit()">RENDER</v-btn>
+            </v-col>
+            <v-spacer></v-spacer>
+          </v-row>
 
-            </v-row>
-
-            <v-row>
-                <v-col cols="12" md="6">
-                    <v-card>
+          <v-row>
+            <v-col cols="12" md="6">
+              <v-card>
                 <textarea
-                        name="sourceCode"
-                        id="sourceCode"
-                        label="Source Code"
-                        :value="sourceCode"
+                  name="sourceCode"
+                  id="sourceCode"
+                  label="Source Code"
+                  :value="sourceCode"
                 ></textarea>
-                    </v-card>
-                </v-col>
-                <v-col cols="12" md="3">
-                  <div id="drop-id" ondrop="console.log('ondrop',event)" ondragover="console.log('ondragover',event);document.querySelector('#drop-id').innerText='drag'" style="width:198px; height:66px;padding:10px;border:1px solid #aaaaaa;"></div>
-                  <br />
-                  <h1 id="drag-id"  draggable="true" ondragstart="console.log('ondragstart',event)" >drag</h1>
-                  <h1>标题 1</h1>
-<h2>标题 2</h2>
-<h3>标题 3</h3>
-<h4>标题 4</h4>
-<h5>标题 5</h5>
-<h6>标题 6</h6>
-<p>段落</p>
+              </v-card>
+            </v-col>
+            <v-col cols="12" md="3">
+              <div
+                id="drop-id"
+                ondrop="console.log('ondrop',event)"
+                ondragover="console.log('ondragover',event);document.querySelector('#drop-id').innerText='drag'"
+                style="
+                  width: 198px;
+                  height: 66px;
+                  padding: 10px;
+                  border: 1px solid #aaaaaa;
+                "
+              ></div>
+              <br />
+              <h1
+                id="drag-id"
+                draggable="true"
+                ondragstart="console.log('ondragstart',event)"
+              >
+                drag
+              </h1>
+              <h1>标题 1</h1>
+              <h2>标题 2</h2>
+              <h3>标题 3</h3>
+              <h4>标题 4</h4>
+              <h5>标题 5</h5>
+              <h6>标题 6</h6>
+              <p>段落</p>
 
-<a  id="a" href="https://www.baidu.com" target="_blank" >href属性表示目标网页的地址</a>
+              <a id="a" href="https://www.baidu.com" target="_blank"
+                >href属性表示目标网页的地址</a
+              >
 
-<img  id="img" src="https://www.baidu.com/img/flexible/logo/pc/result.png" width="101" height="33" />
+              <img
+                id="img"
+                src="https://www.baidu.com/img/flexible/logo/pc/result.png"
+                width="101"
+                height="33"
+              />
 
-<b>粗体</b><br><br>
-<i>斜体</i><br><br>
-<code>这里是代码</code><br><br>
- <sub> 下标</sub> 和 <sup> 上标</sup>
- <table border="1" id="table">
-   <caption>Test</caption>
-   <tr>
-     <th>Index</th>
-     <th>Value</th>
-   </tr>
-   <tr>
-     <td>1</td>
-     <td>111</td>
-   </tr>
-   <tr>
-     <td>2</td>
-     <td>222</td>
-   </tr>
- </table>
- <ol>
-   <li id="li" >Apple</li>
-   <li>Banana</li>
-   <li>Orange</li>
- </ol>
- 
- <ol  id="ol"  start="10">
-   <li>Apple</li>
-   <li>Banana</li>
-   <li>Orange</li>
- </ol>
+              <b>粗体</b><br /><br />
+              <i>斜体</i><br /><br />
+              <code>这里是代码</code><br /><br />
+              <sub> 下标</sub> 和 <sup> 上标</sup>
+              <table border="1" id="table">
+                <caption>
+                  Test
+                </caption>
+                <tr>
+                  <th>Index</th>
+                  <th>Value</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>111</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>222</td>
+                </tr>
+              </table>
+              <ol>
+                <li id="li">Apple</li>
+                <li>Banana</li>
+                <li>Orange</li>
+              </ol>
 
-                </v-col>
-                <v-col cols="12" md="3">
- <form action="">
-  <input   id="radio"  type="radio" name="sex" value="male">Male<br>
-  <input type="radio" name="sex" value="female">Female
-  </form>
+              <ol id="ol" start="10">
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Orange</li>
+              </ol>
+            </v-col>
+            <v-col cols="12" md="3">
+              <form action="">
+                <input
+                  id="radio"
+                  type="radio"
+                  name="sex"
+                  value="male"
+                />Male<br />
+                <input type="radio" name="sex" value="female" />Female
+              </form>
 
+              <form action="">
+                <input
+                  id="input"
+                  type="checkbox"
+                  name="vehicle"
+                  value="Bike"
+                />I have a bike<br />
+                <input type="checkbox" name="vehicle" value="Car" />I have a car
+              </form>
 
-  <form action="">
-    <input  id="input"  type="checkbox" name="vehicle" value="Bike">I have a bike<br>
-    <input type="checkbox" name="vehicle" value="Car">I have a car 
-    </form>
+              <form action="">
+                <select name="cars" id="select">
+                  <option value="volvo">Volvo</option>
+                  <option value="saab">Saab</option>
+                  <option value="fiat">Fiat</option>
+                  <option value="audi">Audi</option>
+                </select>
+              </form>
 
-    <form action="">
-      <select name="cars" id="select" >
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
-      <option value="fiat">Fiat</option>
-      <option value="audi">Audi</option>
-      </select>
-      </form>
-
-      <textarea id="textarea" rows="10" cols="30">
+              <textarea id="textarea" rows="10" cols="30">
         文本框
-        </textarea>
+        </textarea
+              >
 
+              <form action="s" method="get">
+                <input type="checkbox" name="wd" value="Apple" />Search Apple<br />
+                <input
+                  type="checkbox"
+                  name="wd"
+                  value="Banana"
+                  checked="checked"
+                />Search Banana<br />
+                <input type="submit" value="提交" />
+                <input type="reset" value="重置" />
+              </form>
+              <form action="s" method="get">
+                <input type="radio" name="wd" value="Apple" />Search Apple<br />
+                <input
+                  type="radio"
+                  name="wd"
+                  value="Banana"
+                  checked="checked"
+                />Search Banana<br />
+                <input type="submit" value="提交" />
+                <input type="reset" value="重置" />
+              </form>
 
-        <form action="s" method="get">
-          <input type="checkbox" name="wd" value="Apple">Search Apple<br>
-          <input type="checkbox" name="wd" value="Banana" checked="checked">Search Banana<br>
-          <input type="submit" value="提交">
-          <input type="reset" value="重置">
-        </form>
-        <form action="s" method="get">
-          <input type="radio" name="wd" value="Apple">Search Apple<br>
-          <input type="radio" name="wd" value="Banana" checked="checked">Search Banana<br>
-          <input type="submit" value="提交">
-          <input type="reset" value="重置">
-        </form>
-        
-<p style="background-color:#FFFF00">
-  通过十六进制设置背景颜色
-  </p>
-  
-  <p style="background-color:rgb(255,255,0)">
-  通过 rbg 值设置背景颜色
-  </p>
-  
-  <p style="background-color:yellow">
-  通过颜色名设置背景颜色
-  </p>
-        <iframe src="https://www.baidu.com" style="height: 455.6px;width:925px;" frameborder="0"></iframe>
+              <p style="background-color: #ffff00;">
+                通过十六进制设置背景颜色
+              </p>
 
-                    <v-card   width="100%"> </v-card>
-                </v-col>
-            </v-row>
+              <p style="background-color: rgb(255, 255, 0);">
+                通过 rbg 值设置背景颜色
+              </p>
+
+              <p style="background-color: yellow;">
+                通过颜色名设置背景颜色
+              </p>
+              <iframe
+                src="https://www.baidu.com"
+                style="height: 455.6px; width: 925px;"
+                frameborder="0"
+              ></iframe>
+
+              <v-card width="100%"> </v-card>
+            </v-col>
+          </v-row>
         </v-container>
-    </v-app>
-</div>
+      </v-app>
+    </div>
 
-<script src="//cdn.staticfile.org/codemirror/5.40.2/codemirror.min.js"></script>
-<script src="//cdn.staticfile.org/codemirror/5.40.2/mode/htmlmixed/htmlmixed.min.js"></script>
-<script src="//cdn.staticfile.org/codemirror/5.40.2/mode/css/css.min.js"></script>
-<script src="//cdn.staticfile.org/codemirror/5.40.2/mode/javascript/javascript.min.js"></script>
-<script src="//cdn.staticfile.org/codemirror/5.40.2/mode/xml/xml.min.js"></script>
-<script src="//cdn.staticfile.org/codemirror/5.40.2/addon/edit/closetag.min.js"></script>
-<script src="//cdn.staticfile.org/codemirror/5.40.2/addon/edit/closebrackets.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
- 
-<script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/codemirror.min.js"></script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/mode/css/css.min.js"></script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/mode/javascript/javascript.min.js"></script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/mode/xml/xml.min.js"></script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/addon/edit/closetag.min.js"></script>
+    <script src="//cdn.staticfile.org/codemirror/5.40.2/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+    <script>
       new Vue({
         el: "#app",
         vuetify: new Vuetify(),
@@ -303,7 +348,7 @@
         },
       });
     </script>
-<script>
+    <script>
       var mixedMode = {
         name: "htmlmixed",
         scriptTypes: [
@@ -374,8 +419,8 @@
         var ifr = document.createElement("iframe");
         ifr.setAttribute("frameborder", "0");
         ifr.setAttribute("id", "renderedResult");
-        ifr.setAttribute("width","100%")
-        ifr.setAttribute("height","100%")
+        ifr.setAttribute("width", "100%");
+        ifr.setAttribute("height", "100%");
         document.getElementById("renderedCode").innerHTML = "";
         document.getElementById("renderedCode").appendChild(ifr);
 
@@ -392,5 +437,5 @@
       submitTryit();
       autodivheight();
     </script>
-</body> 
+  </body>
 </html>
