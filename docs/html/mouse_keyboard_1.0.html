@@ -194,11 +194,7 @@
               <p style="background-color: yellow;">
                 通过颜色名设置背景颜色
               </p>
-              <iframe
-                src="https://www.baidu.com"
-                style="height: 455.6px; width: 925px;"
-                frameborder="0"
-              ></iframe>
+
 
               <v-card width="100%"> </v-card>
             </v-col>
@@ -326,8 +322,6 @@
 通过颜色名设置背景颜色
 </p>
 
-<iframe src="https://www.baidu.com" style="height: 455.6px;width:925px;" frameborder="0"></iframe>
-
 </body>
 </html>
             `,
@@ -384,7 +378,7 @@
         if (document.documentElement && document.documentElement.clientHeight) {
           winHeight = document.documentElement.clientHeight;
         }
-        height = winHeight * 0.875;
+        height = winHeight * 1.875;
         editor.setSize("100%", height);
         document.getElementById("renderedResult").style.height = height + "px";
       }
