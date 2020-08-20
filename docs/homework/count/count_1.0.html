@@ -1,146 +1,73 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="content-type" content="text/html;charset=utf-8">
-    <title>Register</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta charset="UTF-8">
+    <title>Open Automation Quiz</title>
 </head>
+<script type='text/javascript'>
+    let userName
+function init(){
+if(userName === undefined || userName === null){
+  alert("Open Automation Quiz");
+      userName = prompt("What's your name?","")
+    document.querySelector("#testerName").innerHTML = 'Hi, ' + userName
+}
 
-<body>
-    <div id="app">
-        <v-app id="inspire">
-            <v-container fluid>
-                <v-row align="center" justify="center">
-                    <v-col cols="12" sm="8" md="4">
-                        <v-card class="elevation-12">
-                            <v-toolbar color="primary" dark flat>
-                                <v-toolbar-title>Login</v-toolbar-title>
-
-                            </v-toolbar>
-                            <v-card-text>
-                                <v-form>
-                                    <v-text-field label="Username" id="username" name="login" prepend-icon="mdi-account"
-                                        type="text" clearable counter hint="This field uses username"
-                                        v-model="username">
-                                    </v-text-field>
-
-                                    <v-text-field id="password" label="Password" name="password" prepend-icon="mdi-lock"
-                                        clearable counter hint="This field uses password" v-model="password"
-                                        type="password"></v-text-field>
-                                </v-form>
-                            </v-card-text>
-                            <v-card-actions>
-                                <v-spacer></v-spacer>
-                                <v-btn color="primary" @click="displayFlag = true" id="registerBtn">Register</v-btn>
-                                <v-btn color="primary" @click="login" id="loginBtn">Login</v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
-                </v-row>
-
-                <v-row align="center" justify="center">
-                    <v-card v-show="displayFlag">
-                        <v-card-title class="grey darken-2">
-                            Create User
-                        </v-card-title>
-                        <v-container>
-                            <v-row class="mx-2">
-                                <v-col cols="12">
-                                    <v-text-field prepend-icon="mdi-account" placeholder="Username" v-model="tUsername" id="tUsername">
-                                    </v-text-field>
-                                </v-col>
-                                <v-col cols="12">
-                                    <v-text-field prepend-icon="mdi-lock" placeholder="Password" v-model="tPassword" id="tPassword">
-                                    </v-text-field>
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col cols="12">
-                                    <label for="role">Role:</label>
-                                    <select id="role" style="-webkit-appearance: menulist-button;" v-model="tRole">
-                                        <option value="teacher">Teacher</option>
-                                        <option value="student" selected>Student</option>
-                                    </select>
-                                </v-col>
-                            </v-row>
-                        </v-container>
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn text color="primary" @click="displayFlag = false">Cancel</v-btn>
-                            <v-btn text @click="save" id="saveBtn">Save</v-btn>
-                        </v-card-actions>
-                    </v-card>
-
-                </v-row>
-
-            </v-container>
-        </v-app>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-    <script>
-        new Vue({
-            el: '#app',
-            vuetify: new Vuetify(),
-            data() {
-                return {
-                    displayFlag: false,
-                    username: '',
-                    password: '',
-                    tUsername: '',
-                    tPassword: '',
-                    tRole:'student',
-                    dialog: false
-                }
-            },
-            methods: {
-                switchRegisterFlag() {
-                    this.displayFlag = !this.displayFlag
-                    this.tRole = 'student'
-                },
-                login() {
-                    let u = sessionStorage.getItem("username")
-                    let p = sessionStorage.getItem("password")
-                    let r = sessionStorage.getItem("role")
-                    if (u === '' || p === '') {
-                        alert('Please register firstly')
-                    } else
-                        if (this.username !== u || this.password !== p) {
-                            alert('Invalid username or password')
-                        } else if(r !== 'teacher'){
-                            alert('Please register as teacher')
-                        }
-                        else {
-                            alert('Login Successfully')
-                        }
-
-                },
-                save() {
-                    if (this.tUsername === '') {
-                        alert('Username is empty')
-                    } else if (this.tPassword === '') {
-                        alert('Password is empty')
-                    } else {
-                        sessionStorage.setItem('username', this.tUsername)
-                        sessionStorage.setItem('password', this.tPassword)
-                        sessionStorage.setItem('role', this.tRole)
-                        alert('Register Successfully')
-                        this.displayFlag = false
-                    }
-
-                }
-            }
-        })
-
-    </script>
+    setTimeout(function () {
+            document.querySelector('iframe').src = 'https://cn.bing.com/'
+    }, 3000);
+}
+</script>
+<body onload="init()">
+<div class="index-banner-top">
+    <a href="https://github.com/alaahong/open_automation_quiz"> <span class="span-class">Open Automation Quiz</span></a>
+    <span id="testerName"></span>
+</div>
+<div id="modal">
+    <iframe name="bing" src="#"></iframe>
+</div>
 </body>
+<style>
+.index-banner-top {
+    width: 100%;
+    height: 50px;
+    background-size:cover
+}
+@media only screen and (max-width: 640px){
+    .index-banner-top {
+        height: 100px;
+    }
+}
 
+.span-class {
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-size: big;
+    font-family: Arial,Helvetica,Sans-Serif;
+    font-weight: 400;
+    margin-left: 18px;
+    margin-right: 18px;
+    color: #000 !important;
+    zoom: 1;
+    vertical-align: middle;
+    line-height: 50px !important;
+    display: inline-block;
+    text-decoration: none;
+    opacity: 1;
+}
+body {
+    margin: 0; /* Reset default margin */
+}
+iframe {
+    display: block; /* iframes are inline by default */
+    background: #000;
+    border: none; /* Reset default border */
+    height: 100vh; /* Viewport-relative units */
+    width: 100vw;
+}
+
+
+
+
+</style>
 </html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML</title>
+    <meta charset="utf-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="https://fonts.googleapis.com/css?family=Material+Icons"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+            rel="stylesheet"
+    />
+    <link
+            rel="stylesheet"
+            href="//cdn.staticfile.org/codemirror/5.40.2/codemirror.min.css"
+    />
+    <!--[if lt IE 9]>
+    <script src="//cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="app">
+    <v-app id="inspire">
+        <v-container fluid>
+            <v-row
+                    align="center"
+                    justify="center"
+            >
+                <v-col col="10">
+                    <v-file-input ref="fileInput" v-model="txtContent" accept=".txt" show-size counter multiple label="File input"></v-file-input>
+                </v-col>
+                <v-col col="1"><v-btn id="uploadBtn" @click="uploadFile">UPLOAD</v-btn></v-col>
+            </v-row>
+            <v-row>
+                <v-textarea
+                        id="fileContent"
+                        v-model="txtContent"
+                        label="Content"
+                        counter
+                        maxlength="1024"
+                        full-width
+                        single-line
+                ></v-textarea>
+            </v-row>
+        </v-container>
+    </v-app>
+</div>
+
+<script src="//cdn.staticfile.org/codemirror/5.40.2/codemirror.min.js"></script>
+<script src="//cdn.staticfile.org/codemirror/5.40.2/mode/htmlmixed/htmlmixed.min.js"></script>
+<script src="//cdn.staticfile.org/codemirror/5.40.2/mode/css/css.min.js"></script>
+<script src="//cdn.staticfile.org/codemirror/5.40.2/mode/javascript/javascript.min.js"></script>
+<script src="//cdn.staticfile.org/codemirror/5.40.2/mode/xml/xml.min.js"></script>
+<script src="//cdn.staticfile.org/codemirror/5.40.2/addon/edit/closetag.min.js"></script>
+<script src="//cdn.staticfile.org/codemirror/5.40.2/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script>
+      new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+
+        data() {
+          return {
+          txtContent:''
+          }
+        },
+
+            methods: {
+                uploadFile() {
+                let that = this
+                console.log(this.$refs.fileInput.value)
+                console.log(this.$refs.fileInput.value[0].size)
+           let reader = new FileReader();//新建一个FileReader
+            reader.readAsText(this.$refs.fileInput.value[0], "UTF-8");//读取文件
+            reader.onload = function(evt){ //读取完文件之后会回来这里
+                let fileString = evt.target.result; // 读取文件内容
+                console.log(fileString)
+                that.txtContent = fileString
+                }
+            }
+            }
+      });
+    </script>
+
+</body>
+</html>
