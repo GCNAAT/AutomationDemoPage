@@ -10,7 +10,7 @@ function init(){
 if(userName === undefined || userName === null){
   alert("Open Automation Quiz");
       userName = prompt("What's your name?","")
-    document.querySelector("#testerName").innerHTML = 'Hi, ' + userName
+    document.querySelector("#testerName").innerHTML = 'Hi, ' + userName + '@'+new Date()
 }
 
     setTimeout(function () {
