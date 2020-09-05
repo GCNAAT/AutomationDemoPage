@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>New Register</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+    <div id="app">
+        <v-app id="inspire">
+            <v-container fluid>
+
+                <v-row  v-if="randomBool()"  align="center" justify="center">
+                    <v-col v-show="doNotShow" cols="12" sm="8" md="4">
+                        <v-card class="elevation-12">
+                            <v-toolbar color="primary" dark flat>
+                                <v-toolbar-title>Login</v-toolbar-title>
+
+                            </v-toolbar>
+                            <v-card-text>
+                                <v-form>
+                                    <v-text-field label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+
+                                    <v-text-field label="Password" name="password" prepend-icon="mdi-lock"
+                                                  clearable counter hint="This field uses password" v-model="password"
+                                                  type="password"></v-text-field>
+                                </v-form>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn color="primary" @click="login">Login</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+
+                <v-row v-if="randomBool()"  align="center" justify="center">
+                    <v-card v-show="doNotShow">
+                        <v-card-title class="grey darken-2">
+                            Create User
+                        </v-card-title>
+                        <v-container>
+                            <v-row class="mx-2">
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-account" placeholder="Username" v-model="tUsername">
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-lock" placeholder="Password" v-model="tPassword">
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12">
+                                    <label >Role:</label>
+                                    <select style="-webkit-appearance: menulist-button;" v-model="tRole">
+                                        <option value="teacher">Teacher</option>
+                                        <option value="student" selected>Student</option>
+                                    </select>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text color="primary" @click="displayFlag = false">Cancel</v-btn>
+                            <v-btn text @click="save">Save</v-btn>
+                        </v-card-actions>
+                    </v-card>
+
+                </v-row>
+
+
+
+                <v-row  v-if="randomBool()"  align="center" justify="center">
+                    <v-col v-show="doNotShow" cols="12" sm="8" md="4">
+                        <v-card class="elevation-12">
+                            <v-toolbar color="primary" dark flat>
+                                <v-toolbar-title>Login</v-toolbar-title>
+
+                            </v-toolbar>
+                            <v-card-text>
+                                <v-form>
+                                    <v-text-field label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+
+                                    <v-text-field label="Password" name="password" prepend-icon="mdi-lock"
+                                                  clearable counter hint="This field uses password" v-model="password"
+                                                  type="password"></v-text-field>
+                                </v-form>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn color="primary" @click="login">Login</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+
+                <v-row v-if="randomBool()"  align="center" justify="center">
+                    <v-card v-show="doNotShow">
+                        <v-card-title class="grey darken-2">
+                            Create User
+                        </v-card-title>
+                        <v-container>
+                            <v-row class="mx-2">
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-account" placeholder="Username" v-model="tUsername">
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-lock" placeholder="Password" v-model="tPassword">
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12">
+                                    <label >Role:</label>
+                                    <select style="-webkit-appearance: menulist-button;" v-model="tRole">
+                                        <option value="teacher">Teacher</option>
+                                        <option value="student" selected>Student</option>
+                                    </select>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text color="primary" @click="displayFlag = false">Cancel</v-btn>
+                            <v-btn text @click="save">Save</v-btn>
+                        </v-card-actions>
+                    </v-card>
+
+                </v-row>
+
+
+
+                <v-row  v-if="randomBool()"  align="center" justify="center">
+                    <v-col v-show="doNotShow" cols="12" sm="8" md="4">
+                        <v-card class="elevation-12">
+                            <v-toolbar color="primary" dark flat>
+                                <v-toolbar-title>Login</v-toolbar-title>
+
+                            </v-toolbar>
+                            <v-card-text>
+                                <v-form>
+                                    <v-text-field label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+
+                                    <v-text-field label="Password" name="password" prepend-icon="mdi-lock"
+                                                  clearable counter hint="This field uses password" v-model="password"
+                                                  type="password"></v-text-field>
+                                </v-form>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn color="primary" @click="login">Login</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+
+                <v-row v-if="randomBool()"  align="center" justify="center">
+                    <v-card v-show="doNotShow">
+                        <v-card-title class="grey darken-2">
+                            Create User
+                        </v-card-title>
+                        <v-container>
+                            <v-row class="mx-2">
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-account" placeholder="Username" v-model="tUsername">
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-lock" placeholder="Password" v-model="tPassword">
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12">
+                                    <label >Role:</label>
+                                    <select style="-webkit-appearance: menulist-button;" v-model="tRole">
+                                        <option value="teacher">Teacher</option>
+                                        <option value="student" selected>Student</option>
+                                    </select>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text color="primary" @click="displayFlag = false">Cancel</v-btn>
+                            <v-btn text @click="save">Save</v-btn>
+                        </v-card-actions>
+                    </v-card>
+
+                </v-row>
+
+
+
+
+                <v-row align="center" justify="center">
+                    <v-col cols="12" sm="8" md="4">
+                        <v-card class="elevation-12">
+                            <v-toolbar color="primary" dark flat>
+                                <v-toolbar-title>Login</v-toolbar-title>
+
+                            </v-toolbar>
+                            <v-card-text>
+                                <v-form>
+                                    <v-text-field v-if="randomBool()"  v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-if="randomBool()"  v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-if="randomBool()"  v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-if="randomBool()"  v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field  label="Username"  name="login" prepend-icon="mdi-account"
+                                    :id="randomId()"    type="text" clearable counter hint="This field uses username"
+                                        v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-if="randomBool()"  v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-if="randomBool()"  v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-if="randomBool()"  v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+                                    <v-text-field v-if="randomBool()"  v-show="doNotShow" label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+
+
+
+
+                                    <v-text-field  v-if="randomBool()"  v-show="doNotShow" label="Password" name="password" prepend-icon="mdi-lock"
+                                        clearable counter hint="This field uses password" v-model="password"
+                                        type="password"></v-text-field>
+                                    <v-text-field  v-show="doNotShow"  label="Password" name="password" prepend-icon="mdi-lock"
+                                        clearable counter hint="This field uses password" v-model="password"
+                                        type="password"></v-text-field>
+
+                                    <v-text-field  v-if="randomBool()"  v-show="doNotShow" label="Password" name="password" prepend-icon="mdi-lock"
+                                                   clearable counter hint="This field uses password" v-model="password"
+                                                   type="password"></v-text-field>
+                                    <v-text-field  v-show="doNotShow"  label="Password" name="password" prepend-icon="mdi-lock"
+                                                   clearable counter hint="This field uses password" v-model="password"
+                                                   type="password"></v-text-field>
+
+                                    <v-text-field  v-if="randomBool()"  v-show="doNotShow" label="Password" name="password" prepend-icon="mdi-lock"
+                                                   clearable counter hint="This field uses password" v-model="password"
+                                                   type="password"></v-text-field>
+                                    <v-text-field  v-show="doNotShow"  label="Password" name="password" prepend-icon="mdi-lock"
+                                                   clearable counter hint="This field uses password" v-model="password"
+                                                   type="password"></v-text-field>
+
+                                    <v-text-field label="Password" name="password" prepend-icon="mdi-lock"
+                                                  :id="randomId()"   clearable counter hint="This field uses password" v-model="password"
+                                        type="password"></v-text-field>
+
+
+                                    <v-text-field  v-if="randomBool()"  v-show="doNotShow" label="Password" name="password" prepend-icon="mdi-lock"
+                                                   clearable counter hint="This field uses password" v-model="password"
+                                                   type="password"></v-text-field>
+                                    <v-text-field  v-show="doNotShow"  label="Password" name="password" prepend-icon="mdi-lock"
+                                                   clearable counter hint="This field uses password" v-model="password"
+                                                   type="password"></v-text-field>
+
+                                    <v-text-field  v-if="randomBool()"  v-show="doNotShow" label="Password" name="password" prepend-icon="mdi-lock"
+                                                   clearable counter hint="This field uses password" v-model="password"
+                                                   type="password"></v-text-field>
+                                    <v-text-field  v-show="doNotShow"  label="Password" name="password" prepend-icon="mdi-lock"
+                                                   clearable counter hint="This field uses password" v-model="password"
+                                                   type="password"></v-text-field>
+
+                                    <v-text-field  v-if="randomBool()"  v-show="doNotShow" label="Password" name="password" prepend-icon="mdi-lock"
+                                                   clearable counter hint="This field uses password" v-model="password"
+                                                   type="password"></v-text-field>
+                                    <v-text-field  v-show="doNotShow"  label="Password" name="password" prepend-icon="mdi-lock"
+                                                   clearable counter hint="This field uses password" v-model="password"
+                                                   type="password"></v-text-field>
+
+                                </v-form>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn  v-if="randomBool()"   v-show="doNotShow" color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn   v-show="doNotShow"  color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-show="doNotShow" color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn  v-if="randomBool()"   v-show="doNotShow" color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-if="randomBool()"   v-show="doNotShow" color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn   v-show="doNotShow"  color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-show="doNotShow" color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn  v-if="randomBool()"  v-show="doNotShow"  color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-if="randomBool()"   v-show="doNotShow" color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn   v-show="doNotShow"  color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-show="doNotShow" color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn  v-if="randomBool()"   v-show="doNotShow" color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-if="randomBool()"   v-show="doNotShow" color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn   v-show="doNotShow"  color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-show="doNotShow" color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn  v-if="randomBool()"   v-show="doNotShow" color="primary" @click="login">Login</v-btn>
+                                <v-btn color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-if="randomBool()"  v-show="doNotShow"  color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn   v-show="doNotShow"  color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-show="doNotShow" color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn  v-if="randomBool()"  v-show="doNotShow"  color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-if="randomBool()"  v-show="doNotShow"  color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn   v-show="doNotShow"  color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-show="doNotShow" color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn  v-if="randomBool()"  v-show="doNotShow"  color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-if="randomBool()"  v-show="doNotShow"  color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn   v-show="doNotShow"  color="primary" @click="login">Login</v-btn>
+                                <v-btn  v-show="doNotShow" color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn  v-if="randomBool()"  v-show="doNotShow"  color="primary" @click="login">Login</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+
+
+                <v-row  v-if="randomBool()"  align="center" justify="center">
+                    <v-col v-show="doNotShow" cols="12" sm="8" md="4">
+                        <v-card class="elevation-12">
+                            <v-toolbar color="primary" dark flat>
+                                <v-toolbar-title>Login</v-toolbar-title>
+
+                            </v-toolbar>
+                            <v-card-text>
+                                <v-form>
+                                    <v-text-field label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+
+                                    <v-text-field label="Password" name="password" prepend-icon="mdi-lock"
+                                                  clearable counter hint="This field uses password" v-model="password"
+                                                  type="password"></v-text-field>
+                                </v-form>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn color="primary" @click="login">Login</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+
+                <v-row v-if="randomBool()"  align="center" justify="center">
+                    <v-card v-show="doNotShow">
+                        <v-card-title class="grey darken-2">
+                            Create User
+                        </v-card-title>
+                        <v-container>
+                            <v-row class="mx-2">
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-account" placeholder="Username" v-model="tUsername">
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-lock" placeholder="Password" v-model="tPassword">
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12">
+                                    <label >Role:</label>
+                                    <select style="-webkit-appearance: menulist-button;" v-model="tRole">
+                                        <option value="teacher">Teacher</option>
+                                        <option value="student" selected>Student</option>
+                                    </select>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text color="primary" @click="displayFlag = false">Cancel</v-btn>
+                            <v-btn text @click="save">Save</v-btn>
+                        </v-card-actions>
+                    </v-card>
+
+                </v-row>
+
+
+                <v-row  v-if="randomBool()"  align="center" justify="center">
+                    <v-col v-show="doNotShow" cols="12" sm="8" md="4">
+                        <v-card class="elevation-12">
+                            <v-toolbar color="primary" dark flat>
+                                <v-toolbar-title>Login</v-toolbar-title>
+
+                            </v-toolbar>
+                            <v-card-text>
+                                <v-form>
+                                    <v-text-field label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+
+                                    <v-text-field label="Password" name="password" prepend-icon="mdi-lock"
+                                                  clearable counter hint="This field uses password" v-model="password"
+                                                  type="password"></v-text-field>
+                                </v-form>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn color="primary" @click="login">Login</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+
+                <v-row v-if="randomBool()"  align="center" justify="center">
+                    <v-card v-show="doNotShow">
+                        <v-card-title class="grey darken-2">
+                            Create User
+                        </v-card-title>
+                        <v-container>
+                            <v-row class="mx-2">
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-account" placeholder="Username" v-model="tUsername">
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-lock" placeholder="Password" v-model="tPassword">
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12">
+                                    <label >Role:</label>
+                                    <select style="-webkit-appearance: menulist-button;" v-model="tRole">
+                                        <option value="teacher">Teacher</option>
+                                        <option value="student" selected>Student</option>
+                                    </select>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text color="primary" @click="displayFlag = false">Cancel</v-btn>
+                            <v-btn text @click="save">Save</v-btn>
+                        </v-card-actions>
+                    </v-card>
+
+                </v-row>
+
+
+                <v-row  v-if="randomBool()"  align="center" justify="center">
+                    <v-col v-show="doNotShow" cols="12" sm="8" md="4">
+                        <v-card class="elevation-12">
+                            <v-toolbar color="primary" dark flat>
+                                <v-toolbar-title>Login</v-toolbar-title>
+
+                            </v-toolbar>
+                            <v-card-text>
+                                <v-form>
+                                    <v-text-field label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+
+                                    <v-text-field label="Password" name="password" prepend-icon="mdi-lock"
+                                                  clearable counter hint="This field uses password" v-model="password"
+                                                  type="password"></v-text-field>
+                                </v-form>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn color="primary" @click="login">Login</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+
+                <v-row v-if="randomBool()"  align="center" justify="center">
+                    <v-card v-show="doNotShow">
+                        <v-card-title class="grey darken-2">
+                            Create User
+                        </v-card-title>
+                        <v-container>
+                            <v-row class="mx-2">
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-account" placeholder="Username" v-model="tUsername">
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-lock" placeholder="Password" v-model="tPassword">
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12">
+                                    <label >Role:</label>
+                                    <select style="-webkit-appearance: menulist-button;" v-model="tRole">
+                                        <option value="teacher">Teacher</option>
+                                        <option value="student" selected>Student</option>
+                                    </select>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text color="primary" @click="displayFlag = false">Cancel</v-btn>
+                            <v-btn text @click="save">Save</v-btn>
+                        </v-card-actions>
+                    </v-card>
+
+                </v-row>
+
+
+                <v-row align="center" justify="center">
+                    <v-card v-show="displayFlag">
+                        <v-card-title class="grey darken-2">
+                            Create User
+                        </v-card-title>
+                        <v-container>
+                            <v-row class="mx-2">
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-account" placeholder="Username" v-model="tUsername">
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-lock" placeholder="Password" v-model="tPassword">
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12">
+                                    <label >Role:</label>
+                                    <select style="-webkit-appearance: menulist-button;" v-model="tRole">
+                                        <option value="teacher">Teacher</option>
+                                        <option value="student" selected>Student</option>
+                                    </select>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text color="primary" @click="displayFlag = false">Cancel</v-btn>
+                            <v-btn text @click="save">Save</v-btn>
+                        </v-card-actions>
+                    </v-card>
+
+                </v-row>
+
+                <v-row  v-if="randomBool()"  align="center" justify="center">
+                    <v-col v-show="doNotShow" cols="12" sm="8" md="4">
+                        <v-card class="elevation-12">
+                            <v-toolbar color="primary" dark flat>
+                                <v-toolbar-title>Login</v-toolbar-title>
+
+                            </v-toolbar>
+                            <v-card-text>
+                                <v-form>
+                                    <v-text-field label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+
+                                    <v-text-field label="Password" name="password" prepend-icon="mdi-lock"
+                                                  clearable counter hint="This field uses password" v-model="password"
+                                                  type="password"></v-text-field>
+                                </v-form>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn color="primary" @click="login">Login</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+
+                <v-row v-if="randomBool()"  align="center" justify="center">
+                    <v-card v-show="doNotShow">
+                        <v-card-title class="grey darken-2">
+                            Create User
+                        </v-card-title>
+                        <v-container>
+                            <v-row class="mx-2">
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-account" placeholder="Username" v-model="tUsername">
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-lock" placeholder="Password" v-model="tPassword">
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12">
+                                    <label >Role:</label>
+                                    <select style="-webkit-appearance: menulist-button;" v-model="tRole">
+                                        <option value="teacher">Teacher</option>
+                                        <option value="student" selected>Student</option>
+                                    </select>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text color="primary" @click="displayFlag = false">Cancel</v-btn>
+                            <v-btn text @click="save">Save</v-btn>
+                        </v-card-actions>
+                    </v-card>
+
+                </v-row>
+
+
+                <v-row  v-if="randomBool()"  align="center" justify="center">
+                    <v-col v-show="doNotShow" cols="12" sm="8" md="4">
+                        <v-card class="elevation-12">
+                            <v-toolbar color="primary" dark flat>
+                                <v-toolbar-title>Login</v-toolbar-title>
+
+                            </v-toolbar>
+                            <v-card-text>
+                                <v-form>
+                                    <v-text-field label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+
+                                    <v-text-field label="Password" name="password" prepend-icon="mdi-lock"
+                                                  clearable counter hint="This field uses password" v-model="password"
+                                                  type="password"></v-text-field>
+                                </v-form>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn color="primary" @click="login">Login</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+
+                <v-row v-if="randomBool()"  align="center" justify="center">
+                    <v-card v-show="doNotShow">
+                        <v-card-title class="grey darken-2">
+                            Create User
+                        </v-card-title>
+                        <v-container>
+                            <v-row class="mx-2">
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-account" placeholder="Username" v-model="tUsername">
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-lock" placeholder="Password" v-model="tPassword">
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12">
+                                    <label >Role:</label>
+                                    <select style="-webkit-appearance: menulist-button;" v-model="tRole">
+                                        <option value="teacher">Teacher</option>
+                                        <option value="student" selected>Student</option>
+                                    </select>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text color="primary" @click="displayFlag = false">Cancel</v-btn>
+                            <v-btn text @click="save">Save</v-btn>
+                        </v-card-actions>
+                    </v-card>
+
+                </v-row>
+
+
+                <v-row  v-if="randomBool()"  align="center" justify="center">
+                    <v-col v-show="doNotShow" cols="12" sm="8" md="4">
+                        <v-card class="elevation-12">
+                            <v-toolbar color="primary" dark flat>
+                                <v-toolbar-title>Login</v-toolbar-title>
+
+                            </v-toolbar>
+                            <v-card-text>
+                                <v-form>
+                                    <v-text-field label="Username"  name="login" prepend-icon="mdi-account"
+                                                  type="text" clearable counter hint="This field uses username"
+                                                  v-model="username">
+                                    </v-text-field>
+
+                                    <v-text-field label="Password" name="password" prepend-icon="mdi-lock"
+                                                  clearable counter hint="This field uses password" v-model="password"
+                                                  type="password"></v-text-field>
+                                </v-form>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" @click="displayFlag = true">Register</v-btn>
+                                <v-btn color="primary" @click="login">Login</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+
+                <v-row v-if="randomBool()"  align="center" justify="center">
+                    <v-card v-show="doNotShow">
+                        <v-card-title class="grey darken-2">
+                            Create User
+                        </v-card-title>
+                        <v-container>
+                            <v-row class="mx-2">
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-account" placeholder="Username" v-model="tUsername">
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="12">
+                                    <v-text-field prepend-icon="mdi-lock" placeholder="Password" v-model="tPassword">
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12">
+                                    <label >Role:</label>
+                                    <select style="-webkit-appearance: menulist-button;" v-model="tRole">
+                                        <option value="teacher">Teacher</option>
+                                        <option value="student" selected>Student</option>
+                                    </select>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn text color="primary" @click="displayFlag = false">Cancel</v-btn>
+                            <v-btn text @click="save">Save</v-btn>
+                        </v-card-actions>
+                    </v-card>
+
+                </v-row>
+
+
+            </v-container>
+        </v-app>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data() {
+                return {
+                    doNotShow: false,
+                    displayFlag: false,
+                    username: '',
+                    password: '',
+                    tUsername: '',
+                    tPassword: '',
+                    tRole:'student',
+                    dialog: false
+                }
+            },
+            methods: {
+                randomBool(){
+                    return Math.random() > 0.495
+                },
+                randomId(){
+                    return ''+Math.floor(Math.random() * 10000001)
+                },
+                switchRegisterFlag() {
+                    this.displayFlag = !this.displayFlag
+                    this.tRole = 'student'
+                },
+                login() {
+                    let u = sessionStorage.getItem("username")
+                    let p = sessionStorage.getItem("password")
+                    let r = sessionStorage.getItem("role")
+                    if (u === '' || p === '') {
+                        alert('Please register firstly')
+                    } else
+                        if (this.username !== u || this.password !== p) {
+                            alert('Invalid username or password')
+                        } else if(r !== 'teacher'){
+                            alert('Please register as teacher')
+                        }
+                        else {
+                            alert('Login Successfully')
+                        }
+
+                },
+                save() {
+                    if (this.tUsername === '') {
+                        alert('Username is empty')
+                    } else if (this.tPassword === '') {
+                        alert('Password is empty')
+                    } else {
+                        sessionStorage.setItem('username', this.tUsername)
+                        sessionStorage.setItem('password', this.tPassword)
+                        sessionStorage.setItem('role', this.tRole)
+                        alert('Register Successfully')
+                        this.displayFlag = false
+                    }
+
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
