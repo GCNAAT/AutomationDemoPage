@@ -16,6 +16,10 @@
 <body>
     <div id="app">
         <v-app id="inspire">
+
+            <v-overlay :value="overlay">
+                <v-progress-circular indeterminate size="64"></v-progress-circular>
+            </v-overlay>
             <v-container fluid>
 
                 <v-row  v-if="randomBool()"  align="center" justify="center">
@@ -816,9 +820,23 @@
                     tUsername: '',
                     tPassword: '',
                     tRole:'student',
-                    dialog: false
+                    dialog: false,
+                    overlay:false
                 }
             },
+    watch: {
+      overlay (val) {
+        val && setTimeout(() => {
+          this.overlay = false
+        }, 1000+Math.floor(Math.random() * 6)*1000)
+      },
+    },
+    created(){
+        this.overlay = true
+        setTimeout(() => {
+          this.overlay = false
+        }, 1000+Math.floor(Math.random() * 6)*1000)
+    },
             methods: {
                 randomBool(){
                     return Math.random() > 0.495
@@ -827,10 +845,12 @@
                     return ''+Math.floor(Math.random() * 10000001)
                 },
                 switchRegisterFlag() {
+                    this.overlay = !this.overlay
                     this.displayFlag = !this.displayFlag
                     this.tRole = 'student'
                 },
                 login() {
+                    this.overlay = !this.overlay
                     let u = sessionStorage.getItem("username")
                     let p = sessionStorage.getItem("password")
                     let r = sessionStorage.getItem("role")
@@ -848,6 +868,7 @@
 
                 },
                 save() {
+                    this.overlay = !this.overlay
                     if (this.tUsername === '') {
                         alert('Username is empty')
                     } else if (this.tPassword === '') {
